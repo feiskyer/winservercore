@@ -2,8 +2,7 @@
 IMAGE_NAME ?= feisky/winservercore
 TAG ?= v1.0
 BASE ?= mcr.microsoft.com/windows/servercore
-# OSVERSIONS := 1809 1903 1909 2004 20H2 ltsc2022
-OSVERSIONS := 1809 ltsc2022
+OSVERSIONS := 1809 1903 1909 2004 20H2 ltsc2022
 IMAGE := $(IMAGE_NAME):$(TAG)
 ALL_IMAGES = $(foreach VER, ${OSVERSIONS}, $(IMAGE)-${VER})
 

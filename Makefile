@@ -20,10 +20,10 @@ buildx-setup:
 
 build:
 	# For Linux, it is simpler:
-	# docker buildx build --platform linux/amd64,linux/arm64 --push --pull -t $(IMAGE) .
+	# docker buildx build --platform linux/amd64,linux/arm64 --provenance=false --sbom=false --push --pull -t $(IMAGE) .
 	# For Windows, we need to build each version separately below:
 	for VERSION in $(OSVERSIONS); do \
-		docker buildx build --platform windows/amd64 --push --pull --build-arg WINBASE=${BASE}:$${VERSION} -t "$(IMAGE)-$${VERSION}" .; \
+		docker buildx build --platform windows/amd64 --provenance=false --sbom=false --push --pull --build-arg WINBASE=${BASE}:$${VERSION} -t "$(IMAGE)-$${VERSION}" .; \
 	done
 	docker manifest create --amend $(IMAGE) $(ALL_IMAGES)
 	for VERSION in $(OSVERSIONS); do \
